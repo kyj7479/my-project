@@ -1,3 +1,5 @@
+package com.kyj.gfl.controller;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -5,14 +7,12 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import com.kyj.gfl.model.Equipment;
 
-public class Main {
-	public static void main(String[] args) {
-		String fileLocation = "D:\\Kim YJ\\프로그램\\gf_alarm\\Info\\";
-		String fileName = "칼로타_881387_equip_info.csv";
-		
-		BufferedReader br = null;
-		
+public class FileChecker {
+	ArrayList<Equipment> EquipColl;
+	
+	public FileChecker() {
 //		[00] 옵티컬	VFL 6-24X56			16Lab6-24X56	
 //		[01] 이오텍	EOT 518		
 //		[02] 레드닷	ITI MARS			16LabMARS
@@ -36,7 +36,7 @@ public class Main {
 //		[20] 탄약통	IOP대용량 탄약통		
 //		[21] 슈트	열광학 미채 슈트	16lab 열광학 슈트	
 		
-		ArrayList<Equipment> EquipColl = new ArrayList<Equipment>();
+		this.EquipColl = new ArrayList<Equipment>();
 		EquipColl.add(new Equipment("옵티컬", "VFL 6-24X56", "16Lab6-24X56"));
 		EquipColl.add(new Equipment("이오텍", "EOT 518"));
 		EquipColl.add(new Equipment("레드닷", "ITI MARS", "16LabMARS"));
@@ -82,9 +82,12 @@ public class Main {
 		EquipColl.get(19).setNeed(24);  // 방탄판: 24개 - 국지전 대비용
 		EquipColl.get(20).setNeed(24);  // 탄약통: 24개
 		EquipColl.get(21).setNeed(30);  // 슈  트: 30개
+	}
 
+	public void check(String filePath, String fileName) {
+		BufferedReader br = null;
 		try {
-			br = Files.newBufferedReader(Paths.get(fileLocation+fileName), Charset.forName("EUC-KR"));
+			br = Files.newBufferedReader(Paths.get(filePath+fileName), Charset.forName("EUC-KR"));
 			String line = "";
         	br.readLine();
             while((line = br.readLine()) != null){

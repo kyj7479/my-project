@@ -1,3 +1,4 @@
+package com.kyj.gfl.model;
 
 public class Equipment {
 	private String korFanName; // 별명
@@ -6,12 +7,12 @@ public class Equipment {
 	private int count = 0; // 보유 수량
 	private int need = 0; // 필요 수량
 
-	Equipment(String name1, String name2) {
+	public Equipment(String name1, String name2) {
 		this.korFanName = name1;
 		this.regName = name2;
 	}
 	
-	Equipment(String name1, String name2, String name3) {
+	public Equipment(String name1, String name2, String name3) {
 		this.korFanName = name1;
 		this.regName = name2;
 	}
